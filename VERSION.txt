@@ -1,0 +1,10 @@
+Arown Ride v4.0.0
+Released: 2026-07-15
+
+Architecture:
+- Stable single-page frontend
+- Stable single-file admin interface
+- Unified local data management
+- Optional Firebase Firestore and Storage
+- YouTube and TikTok support
+- Routes, products, stores, images, and JSON backup
