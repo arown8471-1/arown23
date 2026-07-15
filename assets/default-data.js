@@ -9,6 +9,7 @@ export const DEFAULT_DATA={
   },
   youtube:{apiKey:'',channelId:'UCETa15xIkxXXhT22Tp2APPw',channelUrl:'https://www.youtube.com/@arown23',maxResults:9,cacheHours:6},
   manualVideos:[],
+  tiktokVideos:[],
   routes:[
     {name:'阿里山隙頂騎旅',region:'嘉義',difficulty:'適中',distance:'山路景觀路線',image:'assets/route-1.svg',description:'沿著台 18 線前往隙頂，欣賞茶園、雲海與山區道路景觀。',url:'#'},
     {name:'海岸公路放鬆騎',region:'東部海岸',difficulty:'輕鬆',distance:'海景長途路線',image:'assets/route-2.svg',description:'沿海停靠觀景點、咖啡店與休息站，適合安排一整天。',url:'#'},
