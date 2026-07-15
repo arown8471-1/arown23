@@ -1,8 +1,8 @@
 import {DEFAULT_DATA} from './default-data.js';
 import {loadSiteData,saveSiteData,getFirebaseSettings,saveFirebaseSettings,uploadImage,testFirebase} from './data-service.js';
-const $=id=>document.getElementById(id);let data=structuredClone(DEFAULT_DATA);data.tiktokVideos??=[];
+const $=id=>document.getElementById(id);let data=structuredClone(DEFAULT_DATA);data.tiktokVideos ??= [];
 const clone=v=>JSON.parse(JSON.stringify(v));
-const msg=(t,ok=true)=>{$('status').textContent=t;$('status').className='status '+(ok?'ok':'bad')};
+const msg=(t,ok=true)=>{$('status').textContent=t;$('status').className='result '+(ok?'ok':'bad')};
 const clear=ids=>ids.forEach(id=>$(id).value='');
 function tabs(){document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('tab-'+b.dataset.tab).classList.add('on')})}
 async function persist(text='已儲存'){try{const r=await saveSiteData(data);render();msg(`${text}（${r.source==='firebase'?'Firebase 雲端':'本機瀏覽器'}）`)}catch(e){msg('儲存失敗：'+e.message,false)}}
@@ -11,7 +11,7 @@ function fill(){const s=data.site||DEFAULT_DATA.site,c=s.contacts||{},y=data.you
  $('apiKey').value=y.apiKey||'';$('channelId').value=y.channelId||'';$('maxResults').value=y.maxResults||9;$('cacheHours').value=y.cacheHours||6;$('channelUrl').value=y.channelUrl||'';
  $('firebaseEnabled').checked=!!f.enabled;$('firebaseConfig').value=f.config?JSON.stringify(f.config,null,2):''}
 function list(id,arr,label,type){$(id).innerHTML=(arr||[]).map((x,i)=>`<div class="item"><div><strong>${label(x)}</strong></div><div><button data-edit="${type}" data-i="${i}">編輯</button><button data-del="${type}" data-i="${i}">刪除</button></div></div>`).join('')||'<div class="panel">尚無資料</div>'}
-function render(){data.tiktokVideos??=[];fill();list('ttList',data.tiktokVideos,x=>`${x.title||'TikTok'}｜${x.videoId||''}`,'tt');list('routeList',data.routes,x=>`${x.name}｜${x.region}`,'route');list('productList',data.products,x=>`${x.name}｜${x.price}`,'product');list('storeList',data.stores,x=>`${x.name}｜${x.region}`,'store');bindLists()}
+function render(){data.tiktokVideos ??= [];fill();list('ttList',data.tiktokVideos,x=>`${x.title||'TikTok'}｜${x.videoId||''}`,'tt');list('routeList',data.routes,x=>`${x.name}｜${x.region}`,'route');list('productList',data.products,x=>`${x.name}｜${x.price}`,'product');list('storeList',data.stores,x=>`${x.name}｜${x.region}`,'store');bindLists()}
 function ttId(url){const m=String(url||'').match(/\/video\/(\d+)/);return m?m[1]:''}
 $('ttUrl').oninput=()=>{$('ttId').value=ttId($('ttUrl').value)};
 $('saveYoutube').onclick=()=>{data.youtube={apiKey:$('apiKey').value.trim(),channelId:$('channelId').value.trim(),maxResults:+$('maxResults').value,cacheHours:+$('cacheHours').value,channelUrl:$('channelUrl').value.trim()};localStorage.removeItem('arownV3YtCache');persist('YouTube 設定已儲存')};
@@ -31,6 +31,6 @@ function edit(t,i){const x=t==='tt'?data.tiktokVideos[i]:t==='route'?data.routes
  if(t==='product'){ $('productIndex').value=i;$('productName').value=x.name;$('productPrice').value=x.price;$('productCategory').value=x.category;$('productBadge').value=x.badge;$('productImage').value=x.image;$('productDescription').value=x.description;$('productUrl').value=x.url }
  if(t==='store'){ $('storeIndex').value=i;$('storeName').value=x.name;$('storeType').value=x.type;$('storeRegion').value=x.region;$('storeDescription').value=x.description;$('storeUrl').value=x.url }}
 $('exportData').onclick=()=>{const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='arown-ride-v31-backup.json';a.click();URL.revokeObjectURL(a.href)};
-$('importFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{data=JSON.parse(r.result);data.tiktokVideos??=[];await persist('備份已匯入')}catch{msg('JSON 格式錯誤',false)}};r.readAsText(f)};
+$('importFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{data=JSON.parse(r.result);data.tiktokVideos ??= [];await persist('備份已匯入')}catch{msg('JSON 格式錯誤',false)}};r.readAsText(f)};
 $('resetData').onclick=()=>{if(confirm('恢復預設資料？')){data=clone(DEFAULT_DATA);data.tiktokVideos=[];persist('已恢復預設資料')}};
-tabs();const loaded=await loadSiteData(DEFAULT_DATA);data=loaded.data;data.tiktokVideos??=[];render();msg(`v3.1 後台已載入（${loaded.source==='firebase'?'Firebase 雲端':'本機瀏覽器'}）`);
+tabs();const loaded=await loadSiteData(DEFAULT_DATA);data=loaded.data;data.tiktokVideos ??= [];render();msg(`v3.1 後台已載入（${loaded.source==='firebase'?'Firebase 雲端':'本機瀏覽器'}）`);
