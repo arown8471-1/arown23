@@ -1,0 +1,28 @@
+{
+  "version": "4.2.0",
+  "updatedAt": "2026-07-16T00:00:00Z",
+  "site": {
+    "name": "Arown Chen 重機騎旅",
+    "heroTitle": "騎著重機，記錄每一段旅程",
+    "heroSubtitle": "分享道路風景、騎乘路線、旅途故事與騎士用品。",
+    "heroImage": "assets/hero-ride.svg",
+    "about": "喜歡騎著重機在地面飛行的感覺。",
+    "contacts": {
+      "email": "",
+      "line": "",
+      "youtube": "https://www.youtube.com/@arown23",
+      "tiktok": ""
+    }
+  },
+  "youtube": {
+    "apiKey": "",
+    "channelId": "UCETa15xIkxXXhT22Tp2APPw",
+    "channelUrl": "https://www.youtube.com/@arown23",
+    "maxResults": 9
+  },
+  "manualVideos": [],
+  "tiktokVideos": [],
+  "routes": [],
+  "products": [],
+  "stores": []
+}
